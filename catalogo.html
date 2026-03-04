@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -15,22 +16,29 @@ box-sizing:border-box;
 }
 
 body{
-font-family:'Poppins', sans-serif;
+font-family:'Poppins',sans-serif;
 background:#f8f8f8;
-padding:40px;
+padding:clamp(15px,4vw,40px);
 }
+
+/* TITULO */
 
 h1{
 text-align:center;
 margin-bottom:40px;
 color:#c40000;
+font-size:clamp(26px,4vw,36px);
 }
+
+/* GRID RESPONSIVE */
 
 .catalogo{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:clamp(15px,3vw,30px);
 }
+
+/* PRODUCTO */
 
 .producto{
 background:white;
@@ -38,25 +46,29 @@ border-radius:15px;
 overflow:hidden;
 box-shadow:0 5px 15px rgba(0,0,0,0.1);
 transition:transform .3s ease;
+display:flex;
+flex-direction:column;
 }
 
 .producto:hover{
 transform:translateY(-8px);
 }
 
-/* contenedor imagen */
+/* IMAGEN */
+
 .img-box{
 overflow:hidden;
 }
 
 .img-box img{
 width:100%;
-height:300px;
+height:clamp(220px,35vw,300px);
 object-fit:cover;
-transition:transform .6s ease, opacity .8s ease;
+transition:transform .6s ease,opacity .8s ease;
 }
 
-/* zoom suave */
+/* ZOOM */
+
 .producto:hover img{
 transform:scale(1.08);
 }
@@ -65,14 +77,22 @@ transform:scale(1.08);
 opacity:0;
 }
 
+/* INFO */
+
 .info{
 padding:20px;
+flex-grow:1;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
 }
 
 .info h3{
 margin-bottom:20px;
-font-size:16px;
+font-size:clamp(14px,2vw,16px);
 }
+
+/* BOTONES */
 
 .botones{
 display:flex;
@@ -97,7 +117,7 @@ cursor:pointer;
 background:#a00000;
 }
 
-/* modal galeria */
+/* MODAL */
 
 .modal{
 position:fixed;
@@ -105,32 +125,42 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,.85);
+background:rgba(0,0,0,.9);
 display:none;
 justify-content:center;
 align-items:center;
 z-index:999;
+padding:20px;
 }
 
 .modal img{
-max-width:90%;
-max-height:80%;
+max-width:95%;
+max-height:85%;
 border-radius:10px;
 }
 
 .cerrar{
 position:absolute;
-top:20px;
-right:30px;
+top:15px;
+right:25px;
 font-size:35px;
 color:white;
 cursor:pointer;
 }
 
-@media(max-width:768px){
-body{
-padding:20px;
+/* MOBILE EXTRA */
+
+@media(max-width:500px){
+
+.botones{
+flex-direction:column;
 }
+
+.boton{
+width:100%;
+text-align:center;
+}
+
 }
 
 </style>
@@ -154,7 +184,6 @@ padding:20px;
 <a href="https://wa.me/595992178220" class="boton" target="_blank">Consultar</a>
 <button class="boton ver-fotos">Ver más fotos</button>
 </div>
-
 </div>
 </div>
 
@@ -171,7 +200,6 @@ padding:20px;
 <a href="https://wa.me/595992178220" class="boton" target="_blank">Consultar</a>
 <button class="boton ver-fotos">Ver más fotos</button>
 </div>
-
 </div>
 </div>
 
@@ -188,30 +216,28 @@ padding:20px;
 <a href="https://wa.me/595992178220" class="boton" target="_blank">Consultar</a>
 <button class="boton ver-fotos">Ver más fotos</button>
 </div>
-
-
 </div>
 </div>
+
+
 <div class="producto">
 <div class="img-box">
 <img data-images="producto4a.jpg,producto4b.jpg,producto4c.jpg">
 </div>
 
 <div class="info">
-<h3>Prendas personalozadas para invierno</h3>
+<h3>Prendas personalizadas para invierno</h3>
 
 <div class="botones">
 <a href="https://wa.me/595992178220" class="boton" target="_blank">Consultar</a>
 <button class="boton ver-fotos">Ver más fotos</button>
 </div>
-
-
 </div>
 </div>
 
 </div>
 
-<!-- MODAL GALERIA -->
+<!-- MODAL -->
 
 <div class="modal" id="galeria">
 <span class="cerrar">&times;</span>
@@ -220,22 +246,22 @@ padding:20px;
 
 <script>
 
-/* carrusel automatico */
+/* carrusel */
 
 document.querySelectorAll(".producto img").forEach(img=>{
 
-let images = img.dataset.images.split(",");
-let index = 0;
+let images=img.dataset.images.split(",");
+let index=0;
 
-img.src = images[index];
+img.src=images[index];
 
 function cambiar(){
 
 img.classList.add("fade");
 
 setTimeout(()=>{
-index = (index + 1) % images.length;
-img.src = images[index];
+index=(index+1)%images.length;
+img.src=images[index];
 img.classList.remove("fade");
 },400);
 
@@ -247,30 +273,27 @@ img.parentElement.parentElement.addEventListener("mouseenter",cambiar);
 
 });
 
+/* modal */
 
-/* modal galeria */
-
-const modal = document.getElementById("galeria");
-const imgGrande = document.getElementById("imgGrande");
-const cerrar = document.querySelector(".cerrar");
+const modal=document.getElementById("galeria");
+const imgGrande=document.getElementById("imgGrande");
+const cerrar=document.querySelector(".cerrar");
 
 document.querySelectorAll(".ver-fotos").forEach((btn,i)=>{
 
 btn.addEventListener("click",()=>{
 
-let img = document.querySelectorAll(".producto img")[i];
-let images = img.dataset.images.split(",");
+let img=document.querySelectorAll(".producto img")[i];
+let images=img.dataset.images.split(",");
 
-let index = 0;
+let index=0;
 
-imgGrande.src = images[index];
+imgGrande.src=images[index];
 modal.style.display="flex";
 
-/* cambiar dentro del modal */
-
-modal.onclick = ()=>{
-index = (index+1) % images.length;
-imgGrande.src = images[index];
+modal.onclick=()=>{
+index=(index+1)%images.length;
+imgGrande.src=images[index];
 }
 
 });
