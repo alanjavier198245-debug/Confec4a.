@@ -17,20 +17,21 @@ box-sizing:border-box;
 
 body{
 min-height:100vh;
-font-family:'Poppins', sans-serif;
+font-family:'Poppins',sans-serif;
 display:flex;
+flex-direction:column;
 justify-content:center;
-align-items:flex-start;
+align-items:center;
 text-align:center;
-overflow:hidden;
+overflow-x:hidden;
 padding:20px;
 
-background: linear-gradient(-45deg,#ffffff,#ffe4e1,#ffd6a5,#d0f4ff,#f3e5f5);
+background:linear-gradient(-45deg,#ffffff,#ffe4e1,#ffd6a5,#d0f4ff,#f3e5f5);
 background-size:400% 400%;
 animation:fondoRapido 8s ease infinite;
 }
 
-/* Fondo animado */
+/* fondo animado */
 
 @keyframes fondoRapido{
 0%{background-position:0% 50%;}
@@ -38,7 +39,7 @@ animation:fondoRapido 8s ease infinite;
 100%{background-position:0% 50%;}
 }
 
-/* Luz suave */
+/* efecto luz */
 
 body::after{
 content:"";
@@ -47,6 +48,7 @@ width:200%;
 height:200%;
 background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.4),transparent 60%);
 animation:luzLujo 6s infinite alternate ease-in-out;
+z-index:-1;
 }
 
 @keyframes luzLujo{
@@ -54,30 +56,28 @@ from{transform:translate(-10%,-10%);}
 to{transform:translate(10%,10%);}
 }
 
-/* Logo */
+/* logo */
 
 .logo{
 position:absolute;
 top:20px;
 left:20px;
-width:clamp(50px,6vw,70px);
-z-index:2;
+width:clamp(45px,6vw,70px);
 }
 
-/* Contenido */
+/* contenido */
 
 .contenido{
-margin-top:15vh;
-z-index:2;
+margin-top:10vh;
 animation:aparecer 1.5s ease;
-padding:0 10px;
+max-width:800px;
 }
 
-/* Título adaptable */
+/* titulo */
 
 .titulo{
 font-family:'Playfair Display',serif;
-font-size:clamp(36px,6vw,72px);
+font-size:clamp(40px,6vw,72px);
 letter-spacing:4px;
 color:#c40000;
 
@@ -90,16 +90,16 @@ text-shadow:
 font-size:inherit;
 }
 
-/* Eslogan */
+/* eslogan */
 
 .eslogan{
 margin-top:15px;
-font-size:clamp(16px,2.5vw,27px);
+font-size:clamp(18px,2.5vw,27px);
 font-weight:300;
 color:#c40000;
 }
 
-/* Redes */
+/* redes */
 
 .redes{
 position:absolute;
@@ -107,21 +107,18 @@ bottom:25px;
 left:25px;
 display:flex;
 gap:15px;
-z-index:2;
-flex-wrap:wrap;
 }
 
 .redes img{
 width:clamp(32px,4vw,45px);
-height:auto;
-transition:transform .3s ease;
+transition:transform .3s;
 }
 
 .redes img:hover{
 transform:scale(1.15);
 }
 
-/* Botón */
+/* boton catalogo */
 
 .boton{
 position:absolute;
@@ -135,78 +132,50 @@ color:white;
 text-decoration:none;
 border-radius:30px;
 font-weight:500;
-overflow:hidden;
-transition:all .3s ease;
-z-index:2;
-}
 
-/* brillo */
-
-.boton::before{
-content:"";
-position:absolute;
-top:0;
-left:-100%;
-width:50%;
-height:100%;
-background:linear-gradient(
-120deg,
-transparent,
-rgba(255,255,255,.6),
-transparent
-);
-transform:skewX(-20deg);
-}
-
-.boton:hover::before{
-animation:brillo .8s forwards;
-}
-
-@keyframes brillo{
-from{left:-100%;}
-to{left:150%;}
+transition:.3s;
 }
 
 .boton:hover{
 transform:scale(1.08);
 }
 
-/* animación entrada */
+/* animacion entrada */
 
 @keyframes aparecer{
-from{opacity:0;transform:translateY(30px);}
-to{opacity:1;transform:translateY(0);}
+from{opacity:0; transform:translateY(30px);}
+to{opacity:1; transform:translateY(0);}
 }
 
-/* ===================== */
-/* MOBILE ADAPTATION */
-/* ===================== */
+/* ==================== */
+/* VERSION MOVIL */
+/* ==================== */
 
-@media (max-width:768px){
+@media(max-width:768px){
 
-body{
-align-items:center;
-overflow:auto;
+.logo{
+position:relative;
+top:auto;
+left:auto;
+margin-bottom:20px;
 }
-
-/* contenido centrado */
 
 .contenido{
-margin-top:80px;
+margin-top:20px;
 }
 
-/* redes centradas */
-
 .redes{
-position:static;
+position:relative;
+bottom:auto;
+left:auto;
 margin-top:40px;
 justify-content:center;
 }
 
-/* botón abajo centrado */
-
 .boton{
-position:static;
+position:relative;
+bottom:auto;
+right:auto;
 display:inline-block;
 margin-top:30px;
 }
@@ -235,19 +204,19 @@ Calidad, estilo y dedicación en cada prenda.
 <div class="redes">
 
 <a href="https://wa.me/595992178220" target="_blank">
-<img src="whatsapp.png" alt="WhatsApp">
+<img src="whatsapp.png">
 </a>
 
 <a href="https://www.facebook.com/profile.php?id=61585522679491" target="_blank">
-<img src="facebook.png" alt="Facebook">
+<img src="facebook.png">
 </a>
 
 <a href="https://www.instagram.com/confecciones.4a/" target="_blank">
-<img src="instagram.png" alt="Instagram">
+<img src="instagram.png">
 </a>
 
 <a href="https://www.tiktok.com/@confec.4a" target="_blank">
-<img src="tiktok.png" alt="TikTok">
+<img src="tiktok.png">
 </a>
 
 </div>
