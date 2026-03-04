@@ -8,173 +8,211 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-    height:100vh;
-    font-family:'Poppins', sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    text-align:center;
-    overflow:hidden;
-    background: linear-gradient(-45deg, #ffffff, #ffe4e1, #ffd6a5, #d0f4ff, #f3e5f5);
-    background-size: 400% 400%;
-    animation: fondoRapido 8s ease infinite;
+min-height:100vh;
+font-family:'Poppins', sans-serif;
+display:flex;
+justify-content:center;
+align-items:flex-start;
+text-align:center;
+overflow:hidden;
+padding:20px;
+
+background: linear-gradient(-45deg,#ffffff,#ffe4e1,#ffd6a5,#d0f4ff,#f3e5f5);
+background-size:400% 400%;
+animation:fondoRapido 8s ease infinite;
 }
 
 /* Fondo animado */
-@keyframes fondoRapido {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
+
+@keyframes fondoRapido{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 }
 
-/* Capa efecto lujo */
+/* Luz suave */
+
 body::after{
-    content:"";
-    position:absolute;
-    width:200%;
-    height:200%;
-    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4), transparent 60%);
-    animation: luzLujo 6s infinite alternate ease-in-out;
+content:"";
+position:absolute;
+width:200%;
+height:200%;
+background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.4),transparent 60%);
+animation:luzLujo 6s infinite alternate ease-in-out;
 }
 
 @keyframes luzLujo{
-    from{ transform: translate(-10%, -10%); }
-    to{ transform: translate(10%, 10%); }
+from{transform:translate(-10%,-10%);}
+to{transform:translate(10%,10%);}
 }
 
-/* Logo superior */
+/* Logo */
+
 .logo{
-    position:absolute;
-    top:20px;
-    left:20px;
-    width:70px;
-    z-index:2;
+position:absolute;
+top:20px;
+left:20px;
+width:clamp(50px,6vw,70px);
+z-index:2;
 }
 
 /* Contenido */
+
 .contenido{
-    margin-top:15vh;
-    z-index:2;
-    animation: aparecer 1.5s ease;
+margin-top:15vh;
+z-index:2;
+animation:aparecer 1.5s ease;
+padding:0 10px;
 }
 
-/* TÍTULO PREMIUM */
+/* Título adaptable */
+
 .titulo{
-    font-family:'Playfair Display', serif;
-    font-size:72px;
-    letter-spacing:4px;
-    color:#c40000;
-    text-shadow: 
-        0 4px 8px rgba(0,0,0,0.25),
-        0 8px 20px rgba(0,0,0,0.15);
+font-family:'Playfair Display',serif;
+font-size:clamp(36px,6vw,72px);
+letter-spacing:4px;
+color:#c40000;
+
+text-shadow:
+0 4px 8px rgba(0,0,0,0.25),
+0 8px 20px rgba(0,0,0,0.15);
 }
 
-/* Asegura mismo tamaño del 4 */
 .titulo span{
-    font-size:inherit;
+font-size:inherit;
 }
 
 /* Eslogan */
+
 .eslogan{
-    margin-top:15px;
-    font-size:27px;
-    font-weight:300;
-    color:#c40000;
+margin-top:15px;
+font-size:clamp(16px,2.5vw,27px);
+font-weight:300;
+color:#c40000;
 }
 
-/* ICONOS IZQUIERDA */
+/* Redes */
+
 .redes{
-    position:absolute;
-    bottom:25px;
-    left:25px;
-    display:flex;
-    gap:15px;
-    z-index:2;
+position:absolute;
+bottom:25px;
+left:25px;
+display:flex;
+gap:15px;
+z-index:2;
+flex-wrap:wrap;
 }
 
 .redes img{
-    width:45px;
-    height:45px;
-    transition:transform 0.3s ease;
+width:clamp(32px,4vw,45px);
+height:auto;
+transition:transform .3s ease;
 }
 
 .redes img:hover{
-    transform:scale(1.15);
+transform:scale(1.15);
 }
 
-/* BOTÓN FUCSIA PREMIUM */
+/* Botón */
+
 .boton{
-    position:absolute;
-    bottom:25px;
-    right:25px;
-    padding:14px 40px;
-    background:#ff007f;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    font-weight:500;
-    overflow:hidden;
-    transition:all 0.3s ease;
-    z-index:2;
+position:absolute;
+bottom:25px;
+right:25px;
+
+padding:14px 40px;
+
+background:#ff007f;
+color:white;
+text-decoration:none;
+border-radius:30px;
+font-weight:500;
+overflow:hidden;
+transition:all .3s ease;
+z-index:2;
 }
 
-/* EFECTO BRILLO */
+/* brillo */
+
 .boton::before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:-100%;
-    width:50%;
-    height:100%;
-    background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.6),
-        transparent
-    );
-    transform: skewX(-20deg);
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:50%;
+height:100%;
+background:linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,.6),
+transparent
+);
+transform:skewX(-20deg);
 }
 
 .boton:hover::before{
-    animation: brillo 0.8s forwards;
+animation:brillo .8s forwards;
 }
 
 @keyframes brillo{
-    from{ left:-100%; }
-    to{ left:150%; }
+from{left:-100%;}
+to{left:150%;}
 }
 
 .boton:hover{
-    transform:scale(1.08);
+transform:scale(1.08);
 }
 
-/* Animación entrada */
+/* animación entrada */
+
 @keyframes aparecer{
-    from{opacity:0; transform:translateY(30px);}
-    to{opacity:1; transform:translateY(0);}
+from{opacity:0;transform:translateY(30px);}
+to{opacity:1;transform:translateY(0);}
 }
 
-/* RESPONSIVE */
-@media(max-width:768px){
-    .titulo{
-        font-size:44px;
-    }
-    .eslogan{
-        font-size:20px;
-        padding:0 20px;
-    }
-    .redes img{
-        width:35px;
-        height:35px;
-    }
+/* ===================== */
+/* MOBILE ADAPTATION */
+/* ===================== */
+
+@media (max-width:768px){
+
+body{
+align-items:center;
+overflow:auto;
 }
+
+/* contenido centrado */
+
+.contenido{
+margin-top:80px;
+}
+
+/* redes centradas */
+
+.redes{
+position:static;
+margin-top:40px;
+justify-content:center;
+}
+
+/* botón abajo centrado */
+
+.boton{
+position:static;
+display:inline-block;
+margin-top:30px;
+}
+
+}
+
 </style>
 </head>
 
@@ -183,26 +221,40 @@ body::after{
 <img src="logo.png" class="logo" alt="Logo">
 
 <div class="contenido">
-    <div class="titulo">CONFECCIONES <span>4</span>A</div>
-    <div class="eslogan">Calidad, estilo y dedicación en cada prenda.</div>
+
+<div class="titulo">
+CONFECCIONES <span>4</span>A
+</div>
+
+<div class="eslogan">
+Calidad, estilo y dedicación en cada prenda.
+</div>
+
 </div>
 
 <div class="redes">
-    <a href="https://wa.me/595992178220" target="_blank">
-        <img src="whatsapp.png" alt="WhatsApp">
-    </a>
-    <a href="https://www.facebook.com/profile.php?id=61585522679491" target="_blank">
-    <img src="facebook.png" alt="Facebook">
+
+<a href="https://wa.me/595992178220" target="_blank">
+<img src="whatsapp.png" alt="WhatsApp">
 </a>
-    <a href="https://www.instagram.com/confecciones.4a/" target="_blank">
-<img src="instagram.png" width="40">
+
+<a href="https://www.facebook.com/profile.php?id=61585522679491" target="_blank">
+<img src="facebook.png" alt="Facebook">
 </a>
-    <a href="https://www.tiktok.com/@confec.4a" target="_blank">
-<img src="tiktok.png" width="40">
+
+<a href="https://www.instagram.com/confecciones.4a/" target="_blank">
+<img src="instagram.png" alt="Instagram">
 </a>
+
+<a href="https://www.tiktok.com/@confec.4a" target="_blank">
+<img src="tiktok.png" alt="TikTok">
+</a>
+
 </div>
 
-<a href="catalogo.html" class="boton">Ver Catálogo</a>
+<a href="catalogo.html" class="boton">
+Ver Catálogo
+</a>
 
 </body>
 </html>
