@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo | CONFECCIONES 4A</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins', sans-serif;
+background:#f8f8f8;
+padding:40px;
+}
+
+h1{
+text-align:center;
+margin-bottom:40px;
+color:#c40000;
+}
+
+.catalogo{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.producto{
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+transition:transform .3s ease;
+}
+
+.producto:hover{
+transform:translateY(-8px);
+}
+
+/* contenedor imagen */
+.img-box{
+overflow:hidden;
+}
+
+.img-box img{
+width:100%;
+height:300px;
+object-fit:cover;
+transition:transform .6s ease, opacity .8s ease;
+}
+
+/* zoom suave */
+.producto:hover img{
+transform:scale(1.08);
+}
+
+.fade{
+opacity:0;
+}
+
+.info{
+padding:20px;
+}
+
+.info h3{
+margin-bottom:20px;
+font-size:16px;
+}
+
+.botones{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.boton{
+display:inline-block;
+padding:10px 20px;
+background:#c40000;
+color:white;
+text-decoration:none;
+border-radius:25px;
+font-size:14px;
+transition:.3s ease;
+border:none;
+cursor:pointer;
+}
+
+.boton:hover{
+background:#a00000;
+}
+
+/* modal galeria */
+
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.85);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.modal img{
+max-width:90%;
+max-height:80%;
+border-radius:10px;
+}
+
+.cerrar{
+position:absolute;
+top:20px;
+right:30px;
+font-size:35px;
+color:white;
+cursor:pointer;
+}
+
+@media(max-width:768px){
+body{
+padding:20px;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Nuestro Catálogo</h1>
+
+<div class="catalogo">
+
+<div class="producto">
+<div class="img-box">
+<img data-images="producto1a.png,producto1b.png">
+</div>
+
+<div class="info">
+<h3>Vestidos elegantes para niños, jóvenes y adultos</h3>
+
+<div class="botones">
+<a href="https://wa.me/595992178220" class="boton" target="_blank">Consultar</a>
+<button class="boton ver-fotos">Ver más fotos</button>
+</div>
+
+</div>
+</div>
+
+
+<div class="producto">
+<div class="img-box">
+<img data-images="producto2a.png,producto2b.png,producto2c.png">
+</div>
+
+<div class="info">
+<h3>Uniformes escolares y empresariales</h3>
+
+<div class="botones">
+<a href="https://wa.me/595992178220" class="boton" target="_blank">Consultar</a>
+<button class="boton ver-fotos">Ver más fotos</button>
+</div>
+
+</div>
+</div>
+
+
+<div class="producto">
+<div class="img-box">
+<img data-images="producto3a.png,producto3b.png,producto3c.png">
+</div>
+
+<div class="info">
+<h3>Remeras personalizadas para eventos escolares, religiosos y empresariales</h3>
+
+<div class="botones">
+<a href="https://wa.me/595992178220" class="boton" target="_blank">Consultar</a>
+<button class="boton ver-fotos">Ver más fotos</button>
+</div>
+
+
+</div>
+</div>
+<div class="producto">
+<div class="img-box">
+<img data-images="producto4a.jpg,producto4b.jpg,producto4c.jpg">
+</div>
+
+<div class="info">
+<h3>Prendas personalozadas para invierno</h3>
+
+<div class="botones">
+<a href="https://wa.me/595992178220" class="boton" target="_blank">Consultar</a>
+<button class="boton ver-fotos">Ver más fotos</button>
+</div>
+
+
+</div>
+</div>
+
+</div>
+
+<!-- MODAL GALERIA -->
+
+<div class="modal" id="galeria">
+<span class="cerrar">&times;</span>
+<img id="imgGrande">
+</div>
+
+<script>
+
+/* carrusel automatico */
+
+document.querySelectorAll(".producto img").forEach(img=>{
+
+let images = img.dataset.images.split(",");
+let index = 0;
+
+img.src = images[index];
+
+function cambiar(){
+
+img.classList.add("fade");
+
+setTimeout(()=>{
+index = (index + 1) % images.length;
+img.src = images[index];
+img.classList.remove("fade");
+},400);
+
+}
+
+setInterval(cambiar,3000);
+
+img.parentElement.parentElement.addEventListener("mouseenter",cambiar);
+
+});
+
+
+/* modal galeria */
+
+const modal = document.getElementById("galeria");
+const imgGrande = document.getElementById("imgGrande");
+const cerrar = document.querySelector(".cerrar");
+
+document.querySelectorAll(".ver-fotos").forEach((btn,i)=>{
+
+btn.addEventListener("click",()=>{
+
+let img = document.querySelectorAll(".producto img")[i];
+let images = img.dataset.images.split(",");
+
+let index = 0;
+
+imgGrande.src = images[index];
+modal.style.display="flex";
+
+/* cambiar dentro del modal */
+
+modal.onclick = ()=>{
+index = (index+1) % images.length;
+imgGrande.src = images[index];
+}
+
+});
+
+});
+
+cerrar.onclick=()=>{
+modal.style.display="none";
+}
+
+</script>
+
+</body>
+</html>
